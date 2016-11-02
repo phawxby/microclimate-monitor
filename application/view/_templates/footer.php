@@ -1,8 +1,8 @@
 
     <!-- backlink to repo on GitHub, and affiliate link to Rackspace if you want to support the project -->
     <div class="footer">
-        Find <a href="https://github.com/panique/mini">MINI on GitHub</a>.
-        If you like the project, support it by <a href="http://tracking.rackspace.com/SH1ES">using Rackspace</a> as your hoster [affiliate link].
+        Find <a href="https://github.com/phawxby/microclimate-monitor">MCM on GitHub</a>.
+        Based on <a href="https://github.com/panique/mini">MINI</a>.
     </div>
 
     <!-- jQuery, loaded in the recommended protocol-less way -->

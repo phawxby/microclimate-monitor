@@ -44,9 +44,7 @@ service apache2 restart
 sudo rm "/var/www/html/index.html"
 
 # run SQL statements from MINI folder
-sudo mysql -h "localhost" -u "root" "-p${PASSWORD}" < "/var/www/html/_install/01-create-database.sql"
-sudo mysql -h "localhost" -u "root" "-p${PASSWORD}" < "/var/www/html/_install/02-create-table-song.sql"
-sudo mysql -h "localhost" -u "root" "-p${PASSWORD}" < "/var/www/html/_install/03-insert-demo-data-into-table-song.sql"
+sudo mysql -h "localhost" -u "root" "-p${PASSWORD}" < "/var/www/html/_install/mcm.sql"
 
 # put the password into the application's config. This is quite hardcore, but why not :)
 sudo sed -i "s/your_password/${PASSWORD}/" "/var/www/html/application/config/config.php"

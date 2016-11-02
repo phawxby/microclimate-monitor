@@ -11,6 +11,11 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-cli": "^1.2.2",
-    "gulp-sass": "^2.3.2"
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-typescript": "^3.1.2",
+    "gulp-util": "^3.0.7",
+    "normalize.css": "^5.0.0",
+    "typescript": "^2.0.6"
   }
 }
