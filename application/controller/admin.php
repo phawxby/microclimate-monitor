@@ -4,6 +4,7 @@ class Admin extends Controller
 {
     public function insertMockData()
     {
+        $this->models->sensor_log->truncate();
         $this->models->sensor->truncate();
         $this->models->climate->truncate();
         $this->models->user->truncate();
@@ -22,6 +23,10 @@ class Admin extends Controller
         // ----------------------------------------
 
         $outdoorTemp = $this->models->sensor->insertSensor($vegPatch->id, "Outdoor Temperature", Units::DegreesCelsius, "OutdoorTemp");
+
+        // ----------------------------------------
+
+        $this->models->sensor_log->insertLog($outdoorTemp->id, 6);
 
         // load views. within the views we can echo out $song easily
         require APP . 'view/_templates/header.php';
