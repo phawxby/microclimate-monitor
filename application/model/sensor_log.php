@@ -1,7 +1,6 @@
 <?php
-require_once("_helpers.php");
 
-class Climate
+class Sensor_log
 {
     /**
      * @param object $db A PDO database connection
@@ -28,18 +27,29 @@ class Climate
     public function insertClimate($user_id, $name, $short_name)
     {
         $short_name = isset($short_name) && $short_name ? $short_name : $name;
+        $short_name = preg_replace("/[^A-Za-z0-9\-_]/", '', $short_name);
+        $unique_short_name = $short_name;
 
-        $climates = $this->getClimatesForUser($user_id);
-        $exisitingShortNames = array_map(function($o) { $o->short_name; }, $climates);
-        $short_name = Helpers::makeUniqueShortName($short_name, $exisitingShortNames);
+        for($i = 0; $i <= 20; $i++) 
+        {
+            $unique_short_name = $short_name . ($i <= 0 ? "" : $i);
+            $check = $this->getClimateByShortName($user_id, $unique_short_name);
+
+            if (!isset($check) || !$check) {
+                break;
+            }
+            if ($i >= 20) { 
+                throw new Exception('Could not create unique short_name.');
+            }
+        }
 
         $sql = "INSERT INTO climate (user_id, name, short_name) VALUES (:user_id, :name, :short_name)";
         $query = $this->db->prepare($sql);
-        $parameters = array(':user_id' => $user_id, ':name' => $name, ':short_name' => $short_name);
+        $parameters = array(':user_id' => $user_id, ':name' => $name, ':short_name' => $unique_short_name);
 
         $query->execute($parameters);
 
-        return $this->getClimateByShortName($user_id, $short_name);
+        return $this->getClimateByShortName($user_id, $unique_short_name);
     }
 
     public function getClimateByShortName($user_id, $short_name)

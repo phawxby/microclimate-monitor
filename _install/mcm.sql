@@ -48,9 +48,9 @@ CREATE TABLE IF NOT EXISTS `climate` (
 CREATE TABLE IF NOT EXISTS `sensor` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `climate_id` int(11) NOT NULL,
-  `short_name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `unit` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `short_name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `unit` int(11) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `climate_id` (`climate_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;

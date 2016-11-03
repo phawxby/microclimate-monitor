@@ -53,8 +53,10 @@ class Controller
                 $filename = str_replace("." . $fileinfo->getExtension(), "", $fileinfo->getFilename());
                 $className = ucfirst($filename);
 
-                require $fileinfo->getPathname();
-                $this->models->{$filename} = new $className($this->db);
+                if (strpos($filename, "_") !== 0) {
+                    require $fileinfo->getPathname();
+                    $this->models->{$filename} = new $className($this->db);
+                }
             }
         }
     }
